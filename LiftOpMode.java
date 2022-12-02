@@ -20,60 +20,68 @@ public class LiftOpMode extends LinearOpMode {
       // position of dr4b when it is **high
       int liftHighPosition = 0;
 
-      // Find a motor in the hardware map named motors
+      // find a motor in the hardware map named these
       DcMotor rightLift = hardwareMap.dcMotor.get("rightLift");
       DcMotor leftLift = hardwareMap.dcMotor.get("leftLift");
       
       // [LIFT MOTOR].setDirection(DcMotor.Direction.REVERSE);
 
       // reset the motor encoder so that it reads zero ticks
-      armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+      rightLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+      leftLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-      // Sets the starting position of the arm to the down position
-      armMotor.setTargetPosition(liftGroundPosition);
-      armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+      // sets the starting position of the arm to the down position
+      rightLift.setTargetPosition(liftGroundPosition);
+      rightLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+      leftLift.setTargetPosition(liftGroundPosition);
+      leftLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
       
       waitForStart();
 
       while (opModeIsActive()) {
             // if the x button is pressed, move to **ground
             if (gamepad1.x) {
-               armMotor.setTargetPosition(liftGroundPosition);
-               armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-               armMotor.setPower(0.5);
+               rightLift.setTargetPosition(liftGroundPosition);
+               rightLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               rightLift.setPower(0.5);
+               leftLift.setTargetPosition(liftGroundPosition);
+               leftLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               leftLift.setPower(0.5);
             }
 
-            // If the y button is pressed, move to **high
+            // if the y button is pressed, move to **high
             if (gamepad1.y) {
                armMotor.setTargetPosition(liftHighPosition);
                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                armMotor.setPower(0.5);
             }
          
-            // If the b button is pressed, move to **mid
+            // if the b button is pressed, move to **mid
             if (gamepad1.b) {
                armMotor.setTargetPosition(liftMidPosition);
                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                armMotor.setPower(0.5);
             }
          
-           // If the a button is pressed, move to **low
+           // if the a button is pressed, move to **low
             if (gamepad1.a) {
                armMotor.setTargetPosition(liftLowPosition);
                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                armMotor.setPower(0.5);
             }
 
-            // Get the current position of the armMotor
-            double position = armMotor.getCurrentPosition();
+            // get the current position of the motor
+            double position = rightLift.getCurrentPosition();
+            double position = leftLift.getCurrentPosition();
 
-            // Get the target position of the armMotor
-            double desiredPosition = armMotor.getTargetPosition();
+            // get the target position of the motor
+            double desiredPosition = rightLift.getTargetPosition();
+            double desiredPosition = leftLift.getTargetPosition();
 
-            // Show the position of the armMotor on telemetry
+            // show the position of the motor on telemetry
             telemetry.addData("Encoder Position", position);
 
-            // Show the target position of the armMotor on telemetry
+            // show the target position of the motor on telemetry
             telemetry.addData("Desired Position", desiredPosition);
 
             telemetry.update();

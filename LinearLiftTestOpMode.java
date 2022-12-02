@@ -13,7 +13,6 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
     // targetPosition being whatever you want the target position to be
 
 @TeleOp
-@Config
 public class LinearLiftTestOpMode extends LinearOpMode
 // linear opmode means it runs once
 // regular opmode loops back through the code multiple times per second until you turn it off

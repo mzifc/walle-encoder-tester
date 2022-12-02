@@ -1,0 +1,63 @@
+package org.firstinspires.ftc.teamcode.tests;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+
+// will spit out positions in telemetry (on driver hub)
+// record those numbers
+    // create a basic program that sets the lift positions to certain positions when pressing different buttons
+    // you can just set the target position
+    // using motor.setTargetPosition(targetPosition);
+    // targetPosition being whatever you want the target position to be
+
+@TeleOp
+@Config
+public class LinearLiftTestOpMode extends LinearOpMode
+// linear opmode means it runs once
+// regular opmode loops back through the code multiple times per second until you turn it off
+{
+    private DcMotorEx rightLift, leftLift;
+    // it's a fancier way of running motors
+    // basically it allows you to do stuff like setVelocity
+    
+    private double liftPower = 0;
+
+    @Override
+    public void runOpMode() {
+
+        rightLift = hardwareMap.get(DcMotorEx.class, "rightLift");
+        leftLift = hardwareMap.get(DcMotorEx.class, "leftLift");
+        // right and left sides determined from front opening of bot
+        // note: control hubs are in the back
+
+        rightLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        telemetry.addData("Mode", "waiting for start");
+        telemetry.update();
+
+        // [LIFT MOTOR].setDirection(DcMotorEx.Direction.REVERSE);
+
+        // wait for the start button to be pressed
+        waitForStart();
+
+        telemetry.addData("Mode", "running");
+        telemetry.update();
+
+        while (opModeIsActive()) {
+            liftPower = gamepad1.right_trigger - gamepad1.left_trigger;
+            rightLift.setPower(liftPower);
+            leftLift.setPower(liftPower);
+
+            telemetry.addData("rightLift position", rightLift.getCurrentPosition());
+            telemetry.addData("leftLift position", leftLift.getCurrentPosition());
+            telemetry.update();
+        }
+    }
+}

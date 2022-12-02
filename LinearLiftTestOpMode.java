@@ -31,7 +31,9 @@ public class LinearLiftTestOpMode extends LinearOpMode
         // right and left sides determined from front opening of bot
         // note: control hubs are in the back
 
+        // reset the motor encoder so that it reads zero ticks
         rightLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // will use the encoder to take an active role in managing the motor’s speed
         rightLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

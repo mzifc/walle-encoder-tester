@@ -23,6 +23,8 @@ public class LiftOpMode extends LinearOpMode {
       // Find a motor in the hardware map named motors
       DcMotor rightLift = hardwareMap.dcMotor.get("rightLift");
       DcMotor leftLift = hardwareMap.dcMotor.get("leftLift");
+      
+      // [LIFT MOTOR].setDirection(DcMotor.Direction.REVERSE);
 
       // reset the motor encoder so that it reads zero ticks
       armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -30,20 +32,34 @@ public class LiftOpMode extends LinearOpMode {
       // Sets the starting position of the arm to the down position
       armMotor.setTargetPosition(liftGroundPosition);
       armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+      
       waitForStart();
 
       while (opModeIsActive()) {
-            // If the A button is pressed, raise the arm
-            if (gamepad1.a) {
-               armMotor.setTargetPosition(armUpPosition);
+            // if the x button is pressed, move to **ground
+            if (gamepad1.x) {
+               armMotor.setTargetPosition(liftGroundPosition);
                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                armMotor.setPower(0.5);
             }
 
-            // If the B button is pressed, lower the arm
+            // If the y button is pressed, move to **high
+            if (gamepad1.y) {
+               armMotor.setTargetPosition(liftHighPosition);
+               armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               armMotor.setPower(0.5);
+            }
+         
+            // If the b button is pressed, move to **mid
             if (gamepad1.b) {
-               armMotor.setTargetPosition(armDownPosition);
+               armMotor.setTargetPosition(liftMidPosition);
+               armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               armMotor.setPower(0.5);
+            }
+         
+           // If the a button is pressed, move to **low
+            if (gamepad1.a) {
+               armMotor.setTargetPosition(liftLowPosition);
                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                armMotor.setPower(0.5);
             }

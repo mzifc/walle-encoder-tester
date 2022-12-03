@@ -43,6 +43,7 @@ public class LinearLiftTestOpMode extends LinearOpMode
         telemetry.addData("Mode", "waiting for start");
         telemetry.update();
 
+        // reverse one motor until lift moves correctly
         // [LIFT MOTOR].setDirection(DcMotorEx.Direction.REVERSE);
 
         // wait for the start button to be pressed
@@ -52,6 +53,7 @@ public class LinearLiftTestOpMode extends LinearOpMode
         telemetry.update();
 
         while (opModeIsActive()) {
+            // triggers power the left here, not joystick
             liftPower = gamepad1.right_trigger - gamepad1.left_trigger;
             rightLift.setPower(liftPower);
             leftLift.setPower(liftPower);

@@ -51,23 +51,32 @@ public class LiftOpMode extends LinearOpMode {
 
             // if the y button is pressed, move to **high
             if (gamepad1.y) {
-               armMotor.setTargetPosition(liftHighPosition);
-               armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-               armMotor.setPower(0.5);
+               rightLift.setTargetPosition(liftHighPosition);
+               rightLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               rightLift.setPower(0.5);
+               leftLift.setTargetPosition(liftHighPosition);
+               leftLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               leftLift.setPower(0.5);
             }
          
             // if the b button is pressed, move to **mid
             if (gamepad1.b) {
-               armMotor.setTargetPosition(liftMidPosition);
-               armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-               armMotor.setPower(0.5);
+               rightLift.setTargetPosition(liftMidPosition);
+               rightLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               rightLift.setPower(0.5);
+               leftLift.setTargetPosition(liftMidPosition);
+               leftLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               leftLift.setPower(0.5);
             }
          
            // if the a button is pressed, move to **low
             if (gamepad1.a) {
-               armMotor.setTargetPosition(liftLowPosition);
-               armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-               armMotor.setPower(0.5);
+               rightLift.setTargetPosition(liftLowPosition);
+               rightLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               rightLift.setPower(0.5);
+               leftLift.setTargetPosition(liftLowPosition);
+               leftLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+               leftLift.setPower(0.5);
             }
 
             // get the current position of the motor

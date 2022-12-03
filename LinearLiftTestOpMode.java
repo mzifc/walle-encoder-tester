@@ -7,10 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 // will spit out positions in telemetry (on driver hub)
 // record those numbers
-    // create a basic program that sets the lift positions to certain positions when pressing different buttons
-    // you can just set the target position
-    // using motor.setTargetPosition(targetPosition);
-    // targetPosition being whatever you want the target position to be
 
 @TeleOp
 public class LinearLiftTestOpMode extends LinearOpMode

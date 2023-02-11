@@ -117,10 +117,14 @@ public class PowerPlayTeleOp_Thursday extends LinearOpMode {
                 //double power = pid_tick(0,lift.getCurrentPosition());
                 //lift.setPower(power);
                 groundLevel(0.35, 5, -1);
+           
+                
                 //high position
             } else if (gamepad2.y) {
                 double power = pid_tick(300, lift.getCurrentPosition());
                 lift.setPower(power);
+                
+                
                 //mid position
             } else if (gamepad2.b) {
                 double power = pid_tick(55000, lift.getCurrentPosition());
@@ -166,6 +170,8 @@ public class PowerPlayTeleOp_Thursday extends LinearOpMode {
         }
     }
 
+    
+    
     public double pid_tick(double reference, double state) {
         double error = reference - state;
         intergalSum += error * timer.seconds();
@@ -177,6 +183,8 @@ public class PowerPlayTeleOp_Thursday extends LinearOpMode {
         return output;
     }
 
+    
+    
     public void groundLevel(double power, long totalSeconds, int Direction) throws InterruptedException {
         // lift.setTargetPosition(0);
         lift.setPower(power * Direction);

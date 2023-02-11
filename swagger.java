@@ -135,9 +135,7 @@ public class PowerPlayTeleOp_Thursday extends LinearOpMode {
           else {
               lift.setPower(0);
           }
-            
-            double power = pid_tick(goalPos, lift.getCurrentPosition());
-            lift.setPower(power);
+
 
             if (gamepad2.right_bumper) {
                 // open
